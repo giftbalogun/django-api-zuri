@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils import timezone
+from .managers import ActiveLinkManager
 
 class Link(models.Model):
     # DB Fields
@@ -11,6 +12,7 @@ class Link(models.Model):
     )
     identifier = models.SlugField(max_length=20, unique=True, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
-
     active = models.BooleanField(default=True)
 
+	objects = models.Manager()
+	public = ActiveLinkManager()
